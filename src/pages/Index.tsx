@@ -1,12 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import HeroSection from "@/components/HeroSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import CharactersSection from "@/components/CharactersSection";
+import ExamplesSection from "@/components/ExamplesSection";
+import TrustSection from "@/components/TrustSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className={`min-h-screen transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <HeroSection />
+      <HowItWorksSection />
+      <CharactersSection />
+      <ExamplesSection />
+      <TrustSection />
+      <TestimonialsSection />
+      <Footer />
     </div>
   );
 };
