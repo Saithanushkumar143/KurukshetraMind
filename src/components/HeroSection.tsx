@@ -65,7 +65,7 @@ const HeroSection = () => {
           <Button 
             size="lg" 
             className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300"
-            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
+            onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
           >
             🕉️ Start Your Journey
           </Button>
@@ -73,7 +73,7 @@ const HeroSection = () => {
             variant="outline" 
             size="lg" 
             className="border-spiritual-gold text-spiritual-gold hover:bg-spiritual-gold hover:text-spiritual-warm-black px-8 py-4 text-lg transition-all duration-300"
-            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
+            onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
           >
             📖 Explore Wisdom
           </Button>
