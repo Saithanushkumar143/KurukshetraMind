@@ -1,9 +1,6 @@
-
 import { Button } from "@/components/ui/button";
-
 const Footer = () => {
-  return (
-    <footer className="py-16 px-6 border-t border-spiritual-gold/20">
+  return <footer className="py-16 px-6 border-t border-spiritual-gold/20">
       <div className="max-w-6xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -55,20 +52,14 @@ const Footer = () => {
             Let the eternal wisdom of the Mahabharata guide you through life's challenges. 
             Your transformation awaits.
           </p>
-          <Button 
-            size="lg" 
-            className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300"
-            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
-          >
+          <Button size="lg" className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300" onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}>
             🕉️ Start Your Journey Now
           </Button>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-spiritual-gold/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-spiritual-beige/60 text-sm">
-            © 2024 KurukshetraMind. Guided by eternal wisdom.
-          </p>
+          <p className="text-spiritual-beige/60 text-sm">© 2025 KurukshetraMind. Guided by eternal wisdom.</p>
           <div className="flex items-center gap-4 text-spiritual-beige/60 text-sm">
             <span>🕉️</span>
             <span>Made with devotion</span>
@@ -76,8 +67,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
