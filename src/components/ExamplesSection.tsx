@@ -96,6 +96,7 @@ const ExamplesSection = () => {
                   variant="outline" 
                   size="sm" 
                   className="border-spiritual-gold/50 text-spiritual-gold hover:bg-spiritual-gold hover:text-spiritual-warm-black text-xs"
+                  onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
                 >
                   Explore This Teaching
                 </Button>
@@ -121,7 +122,7 @@ const ExamplesSection = () => {
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-1 h-6 bg-spiritual-gold mx-auto rounded-full animate-pulse"></div>
+                <div className="w-1 h-6 bg-spiritual-gold mx-auto rounded-full opacity-70"></div>
               </div>
               <div className="p-4 bg-spiritual-gold/10 rounded-lg border border-spiritual-gold/30">
                 <p className="text-spiritual-gold text-sm font-semibold mb-1">Krishna guides:</p>
@@ -134,6 +135,7 @@ const ExamplesSection = () => {
             <Button 
               size="lg" 
               className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-3 hover:scale-105 transition-transform duration-300"
+              onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
             >
               🕉️ Begin Your Journey
             </Button>

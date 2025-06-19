@@ -28,10 +28,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-spiritual-beige mb-4">Quick Links</h4>
             <ul className="space-y-2 text-spiritual-beige/70 text-sm">
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">How It Works</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Our Teachers</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Sacred Texts</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Community</a></li>
+              <li><a href="https://project-mahabharat.onrender.com" target="_blank" rel="noopener noreferrer" className="hover:text-spiritual-gold transition-colors">How It Works</a></li>
+              <li><a href="https://project-mahabharat.onrender.com" target="_blank" rel="noopener noreferrer" className="hover:text-spiritual-gold transition-colors">Our Teachers</a></li>
+              <li><a href="https://project-mahabharat.onrender.com" target="_blank" rel="noopener noreferrer" className="hover:text-spiritual-gold transition-colors">Sacred Texts</a></li>
+              <li><a href="https://project-mahabharat.onrender.com" target="_blank" rel="noopener noreferrer" className="hover:text-spiritual-gold transition-colors">Community</a></li>
             </ul>
           </div>
 
@@ -39,10 +39,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-spiritual-beige mb-4">Support</h4>
             <ul className="space-y-2 text-spiritual-beige/70 text-sm">
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Help Center</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-spiritual-gold transition-colors">Contact Us</a></li>
+              <li><a href="https://project-mahabharat.onrender.com" target="_blank" rel="noopener noreferrer" className="hover:text-spiritual-gold transition-colors">Help Center</a></li>
+              <li><a href="mailto:kurukshetramind@gmail.com" className="hover:text-spiritual-gold transition-colors">Contact Us</a></li>
+              <li><span className="text-spiritual-beige/50">kurukshetramind@gmail.com</span></li>
             </ul>
           </div>
         </div>
@@ -58,7 +57,8 @@ const Footer = () => {
           </p>
           <Button 
             size="lg" 
-            className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300 animate-glow"
+            className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300"
+            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
           >
             🕉️ Start Your Journey Now
           </Button>

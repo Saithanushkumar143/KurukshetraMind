@@ -8,32 +8,32 @@ const CharactersSection = () => {
       title: "The Divine Guide",
       wisdom: "Duty, Devotion & Inner Peace",
       description: "Master of dharma and divine consciousness, Krishna teaches us to act without attachment to results.",
-      image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=400&q=80",
-      specialty: "Life Purpose & Spiritual Growth"
+      specialty: "Life Purpose & Spiritual Growth",
+      nameDisplay: "कृष्ण"
     },
     {
       name: "Arjuna",
       title: "The Warrior's Dilemma", 
       wisdom: "Overcoming Doubt & Fear",
       description: "The greatest archer who faced his deepest fears on the battlefield of duty and morality.",
-      image: "https://images.unsplash.com/photo-1473177104440-ffee2f376098?auto=format&fit=crop&w=400&q=80",
-      specialty: "Courage & Decision Making"
+      specialty: "Courage & Decision Making",
+      nameDisplay: "अर्जुन"
     },
     {
       name: "Draupadi",
       title: "The Resilient Queen",
       wisdom: "Strength Through Suffering",
       description: "A symbol of dignity and resilience, teaching us how to maintain honor in the face of injustice.",
-      image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?auto=format&fit=crop&w=400&q=80",
-      specialty: "Healing & Justice"
+      specialty: "Healing & Justice",
+      nameDisplay: "द्रौपदी"
     },
     {
       name: "Bhishma",
       title: "The Noble Grandfather",
       wisdom: "Honor & Sacrifice",
       description: "The grand patriarch who chose duty over personal desires, teaching the power of commitment.",
-      image: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?auto=format&fit=crop&w=400&q=80",
-      specialty: "Loyalty & Wisdom"
+      specialty: "Loyalty & Wisdom",
+      nameDisplay: "भीष्म"
     }
   ];
 
@@ -58,18 +58,18 @@ const CharactersSection = () => {
               key={index}
               className="group bg-spiritual-charcoal/50 border-spiritual-gold/20 overflow-hidden hover-glow transition-all duration-500 hover:border-spiritual-gold/50 hover:scale-105"
             >
-              {/* Character Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={character.image} 
-                  alt={character.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-spiritual-charcoal via-transparent to-transparent opacity-80"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="font-sanskrit text-lg font-semibold text-spiritual-beige">
+              {/* Character Name Display */}
+              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-spiritual-charcoal to-spiritual-warm-black flex items-center justify-center">
+                <div className="text-center">
+                  <div className="font-devanagari text-4xl text-spiritual-gold mb-2">
+                    {character.nameDisplay}
+                  </div>
+                  <div className="font-sanskrit text-lg text-spiritual-beige">
                     {character.name}
-                  </h3>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-spiritual-charcoal via-transparent to-transparent opacity-30"></div>
+                <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-spiritual-gold text-sm">
                     {character.title}
                   </p>

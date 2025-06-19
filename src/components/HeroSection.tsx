@@ -27,10 +27,10 @@ const HeroSection = () => {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-spiritual-warm-black/80 via-spiritual-charcoal/60 to-spiritual-warm-black/90" />
       
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-2 h-2 bg-spiritual-gold rounded-full animate-float" />
-      <div className="absolute top-40 right-20 w-1 h-1 bg-saffron-400 rounded-full animate-float" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-40 left-20 w-3 h-3 bg-spiritual-gold/50 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      {/* Floating Elements - reduced animation */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-spiritual-gold rounded-full opacity-70" />
+      <div className="absolute top-40 right-20 w-1 h-1 bg-saffron-400 rounded-full opacity-60" />
+      <div className="absolute bottom-40 left-20 w-3 h-3 bg-spiritual-gold/50 rounded-full opacity-50" />
       
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto animate-fade-in-up">
         {/* Main Headline */}
@@ -64,7 +64,8 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             size="lg" 
-            className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300 animate-glow"
+            className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300"
+            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
           >
             🕉️ Start Your Journey
           </Button>
@@ -72,6 +73,7 @@ const HeroSection = () => {
             variant="outline" 
             size="lg" 
             className="border-spiritual-gold text-spiritual-gold hover:bg-spiritual-gold hover:text-spiritual-warm-black px-8 py-4 text-lg transition-all duration-300"
+            onClick={() => window.open('https://project-mahabharat.onrender.com', '_blank')}
           >
             📖 Explore Wisdom
           </Button>
@@ -94,10 +96,10 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Scroll Indicator - reduced animation */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="w-6 h-10 border-2 border-spiritual-gold rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-spiritual-gold rounded-full mt-2 animate-pulse"></div>
+          <div className="w-1 h-3 bg-spiritual-gold rounded-full mt-2 opacity-80"></div>
         </div>
       </div>
     </section>
