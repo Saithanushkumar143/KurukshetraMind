@@ -43,19 +43,19 @@ const VisitorCounter = () => {
     <div className="text-center py-8 border-t border-spiritual-gold/10 bg-spiritual-charcoal/30">
       {/* Two Column Layout */}
       <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto mb-6">
-        {/* Total Visitors Column */}
+        {/* Total Visits Column */}
         <div className="bg-spiritual-charcoal/50 rounded-lg p-6 border border-spiritual-gold/20 hover-glow">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-2xl">👥</span>
+            <span className="text-2xl">📊</span>
             <h3 className="text-spiritual-gold font-semibold text-lg">
-              Total Visitors
+              Total Visits
             </h3>
           </div>
           <div className="text-spiritual-beige mb-2">
             <AnimatedCounter value={totalUsers} />
           </div>
           <p className="text-spiritual-beige/60 text-sm">
-            Souls who found this sacred space
+            Every journey to this sacred space
           </p>
         </div>
 

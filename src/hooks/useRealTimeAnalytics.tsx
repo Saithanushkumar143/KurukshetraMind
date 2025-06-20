@@ -27,12 +27,20 @@ export const useRealTimeAnalytics = () => {
           localStorage.setItem('visitor_id', visitorId);
         }
 
-        // Track unique visitors across all time (from website creation)
+        // Track total page visits (increment every time someone visits)
+        const totalVisitsKey = 'total_page_visits';
+        let totalVisits = parseInt(localStorage.getItem(totalVisitsKey) || '0');
+        
+        // Increment total visits count on every page load/refresh
+        totalVisits += 1;
+        localStorage.setItem(totalVisitsKey, totalVisits.toString());
+
+        // Track unique visitors for analytics purposes (but not for display)
         const visitorsKey = 'unique_visitors_all_time';
         const storedVisitors = localStorage.getItem(visitorsKey);
         let visitors: string[] = storedVisitors ? JSON.parse(storedVisitors) : [];
         
-        // Add this visitor if not already tracked (permanent tracking)
+        // Add this visitor if not already tracked (for analytics tracking)
         if (!visitors.includes(visitorId)) {
           visitors.push(visitorId);
           localStorage.setItem(visitorsKey, JSON.stringify(visitors));
@@ -45,11 +53,17 @@ export const useRealTimeAnalytics = () => {
             timestamp: new Date().toISOString()
           });
 
-          console.log(`New unique visitor tracked: ${visitorId}. Total visitors: ${visitors.length}`);
+          console.log(`New unique visitor tracked: ${visitorId}. Total unique visitors: ${visitors.length}`);
         }
 
-        // Total visitors is the count of all unique visitors since website creation
-        const totalUsers = visitors.length;
+        // Track every page visit in GA
+        window.gtag('event', 'page_visit', {
+          visitor_id: visitorId,
+          page_title: document.title,
+          page_location: window.location.href,
+          visit_number: totalVisits,
+          timestamp: new Date().toISOString()
+        });
 
         // Track current session activity
         const sessionKey = 'current_session_' + visitorId;
@@ -67,16 +81,16 @@ export const useRealTimeAnalytics = () => {
         });
 
         // Calculate active users based on realistic patterns
-        // Simulate active users as a percentage of total visitors with some variation
-        const baseActiveRate = 0.08; // 8% base activity rate
-        const randomVariation = (Math.random() - 0.5) * 0.04; // ±2% variation
+        // Simulate active users as a percentage of total visits with some variation
+        const baseActiveRate = 0.05; // 5% base activity rate (lower since total visits can be higher)
+        const randomVariation = (Math.random() - 0.5) * 0.03; // ±1.5% variation
         const activeRate = Math.max(0.01, baseActiveRate + randomVariation);
-        const activeUsers = Math.max(1, Math.min(Math.floor(totalUsers * activeRate), totalUsers));
+        const activeUsers = Math.max(1, Math.min(Math.floor(totalVisits * activeRate), Math.floor(totalVisits * 0.3))); // Cap at 30% of total visits
         
-        console.log(`Analytics Update - Total: ${totalUsers}, Active: ${activeUsers}`);
+        console.log(`Analytics Update - Total Visits: ${totalVisits}, Active: ${activeUsers}`);
         
         setData({
-          totalUsers,
+          totalUsers: totalVisits,
           activeUsers,
           isLoading: false,
           error: null
