@@ -20,35 +20,45 @@ export const useRealTimeAnalytics = () => {
     try {
       // Check if gtag is available
       if (typeof window !== 'undefined' && window.gtag) {
-        // For real-time active users, we need to use the Measurement Protocol
-        // or Google Analytics Reporting API. Since we can't make direct API calls
-        // from the frontend without exposing API keys, we'll use a combination
-        // of gtag events and localStorage for persistence
+        // Generate a unique visitor ID for this browser session
+        let visitorId = localStorage.getItem('visitor_id');
+        if (!visitorId) {
+          visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('visitor_id', visitorId);
+        }
+
+        // Track this unique visitor
+        const visitorsKey = 'unique_visitors';
+        const storedVisitors = localStorage.getItem(visitorsKey);
+        let visitors: string[] = storedVisitors ? JSON.parse(storedVisitors) : [];
         
-        // Get stored total users or initialize
-        const storedTotal = localStorage.getItem('total_users');
-        let totalUsers = storedTotal ? parseInt(storedTotal) : 0;
-        
-        // Increment total users on page load (simulate unique visitors)
-        const lastVisit = localStorage.getItem('last_visit');
-        const now = Date.now();
-        const oneHour = 60 * 60 * 1000;
-        
-        if (!lastVisit || (now - parseInt(lastVisit)) > oneHour) {
-          totalUsers += 1;
-          localStorage.setItem('total_users', totalUsers.toString());
-          localStorage.setItem('last_visit', now.toString());
+        // Add this visitor if not already tracked
+        if (!visitors.includes(visitorId)) {
+          visitors.push(visitorId);
+          localStorage.setItem(visitorsKey, JSON.stringify(visitors));
           
-          // Track the visit in GA
-          window.gtag('event', 'page_view', {
+          // Track the new visitor in GA
+          window.gtag('event', 'new_visitor', {
+            visitor_id: visitorId,
             page_title: document.title,
             page_location: window.location.href,
           });
         }
-        
-        // For active users, we'll simulate based on realistic patterns
+
+        // Total visitors is the count of unique visitors
+        const totalUsers = visitors.length;
+
+        // Track page view for existing logic
+        window.gtag('event', 'page_view', {
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+
+        // For active users, simulate realistic active browsing patterns
         // In production, you'd connect to Google Analytics Reporting API
-        const activeUsers = Math.floor(Math.random() * 5) + (totalUsers > 100 ? Math.floor(totalUsers * 0.05) : 0);
+        const baseActiveUsers = Math.max(1, Math.floor(totalUsers * 0.1)); // 10% of total as baseline
+        const randomVariation = Math.floor(Math.random() * 3); // Add some random variation
+        const activeUsers = Math.min(baseActiveUsers + randomVariation, totalUsers);
         
         setData({
           totalUsers,
