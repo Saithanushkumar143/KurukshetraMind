@@ -1,45 +1,92 @@
 
-import { useVisitorCount } from "@/hooks/useVisitorCount";
+import { useRealTimeAnalytics } from "@/hooks/useRealTimeAnalytics";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useEffect } from "react";
+import AnimatedCounter from "./AnimatedCounter";
 
 const VisitorCounter = () => {
-  const { visitorCount, isLoading } = useVisitorCount();
+  const { totalUsers, activeUsers, isLoading, error } = useRealTimeAnalytics();
   const { trackUserEngagement } = useAnalytics();
 
   useEffect(() => {
     // Track when visitor counter is viewed
-    trackUserEngagement('visitor_counter_viewed', visitorCount.toString());
-  }, [visitorCount, trackUserEngagement]);
+    if (!isLoading) {
+      trackUserEngagement('visitor_counter_viewed', `total:${totalUsers},active:${activeUsers}`);
+    }
+  }, [totalUsers, activeUsers, isLoading, trackUserEngagement]);
 
   if (isLoading) {
     return (
-      <div className="text-center py-4 border-t border-spiritual-gold/10">
+      <div className="text-center py-8 border-t border-spiritual-gold/10 bg-spiritual-charcoal/30">
         <div className="animate-pulse">
-          <div className="h-4 bg-spiritual-gold/20 rounded w-48 mx-auto mb-2"></div>
-          <div className="h-3 bg-spiritual-beige/20 rounded w-32 mx-auto"></div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-md mx-auto">
+            <div className="bg-spiritual-gold/20 rounded-lg h-20"></div>
+            <div className="bg-spiritual-gold/20 rounded-lg h-20"></div>
+          </div>
+          <div className="h-3 bg-spiritual-beige/20 rounded w-48 mx-auto mt-4"></div>
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="text-center py-6 border-t border-spiritual-gold/10 bg-spiritual-charcoal/30">
-      <div className="flex items-center justify-center gap-3 mb-2">
-        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-        <span className="text-spiritual-gold font-semibold text-lg">
-          {visitorCount.toLocaleString()} Active Visitors
-        </span>
-        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+  if (error) {
+    return (
+      <div className="text-center py-6 border-t border-spiritual-gold/10 bg-spiritual-charcoal/30">
+        <p className="text-spiritual-beige/60 text-sm">
+          Connecting to divine analytics...
+        </p>
       </div>
-      <p className="text-spiritual-beige/60 text-sm">
-        Souls currently seeking wisdom on this sacred journey
-      </p>
-      <div className="mt-3 flex items-center justify-center gap-2 text-spiritual-beige/40 text-xs">
+    );
+  }
+
+  return (
+    <div className="text-center py-8 border-t border-spiritual-gold/10 bg-spiritual-charcoal/30">
+      {/* Two Column Layout */}
+      <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto mb-6">
+        {/* Total Visitors Column */}
+        <div className="bg-spiritual-charcoal/50 rounded-lg p-6 border border-spiritual-gold/20 hover-glow">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-2xl">👥</span>
+            <h3 className="text-spiritual-gold font-semibold text-lg">
+              Total Visitors
+            </h3>
+          </div>
+          <div className="text-spiritual-beige mb-2">
+            <AnimatedCounter value={totalUsers} />
+          </div>
+          <p className="text-spiritual-beige/60 text-sm">
+            Souls who found this sacred space
+          </p>
+        </div>
+
+        {/* Active Users Column */}
+        <div className="bg-spiritual-charcoal/50 rounded-lg p-6 border border-spiritual-gold/20 hover-glow">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <h3 className="text-spiritual-gold font-semibold text-lg">
+              Active Users
+            </h3>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          </div>
+          <div className="text-spiritual-beige mb-2">
+            <AnimatedCounter value={activeUsers} />
+          </div>
+          <p className="text-spiritual-beige/60 text-sm">
+            Currently seeking wisdom
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Description */}
+      <div className="flex items-center justify-center gap-3 text-spiritual-beige/50 text-sm">
         <span>🕉️</span>
-        <span>Real-time spiritual community</span>
+        <span>Real-time from Google Analytics</span>
         <span>🙏</span>
       </div>
+      
+      <p className="text-spiritual-beige/40 text-xs mt-2">
+        Updated every 30 seconds • Powered by divine data
+      </p>
     </div>
   );
 };
