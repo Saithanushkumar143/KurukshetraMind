@@ -16,7 +16,7 @@ export const useAnalytics = () => {
 
   const trackPageView = (pagePath: string, pageTitle?: string) => {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'GA_MEASUREMENT_ID', {
+      window.gtag('config', 'G-NFSRJ1XFG3', {
         page_path: pagePath,
         page_title: pageTitle || document.title,
       });
