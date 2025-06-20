@@ -6,7 +6,7 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
-const AnimatedCounter = ({ value, duration = 2000 }: AnimatedCounterProps) => {
+const AnimatedCounter = ({ value, duration = 1500 }: AnimatedCounterProps) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -14,19 +14,23 @@ const AnimatedCounter = ({ value, duration = 2000 }: AnimatedCounterProps) => {
     const startValue = displayValue;
     const difference = value - startValue;
 
+    if (difference === 0) return;
+
     const updateCounter = () => {
       const now = Date.now();
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      const currentValue = Math.floor(startValue + difference * easeOutQuart);
+      // Enhanced easing function for smoother rolling animation
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(startValue + difference * easeOutCubic);
       
       setDisplayValue(currentValue);
       
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
+      } else {
+        setDisplayValue(value); // Ensure final value is exact
       }
     };
 
@@ -34,7 +38,7 @@ const AnimatedCounter = ({ value, duration = 2000 }: AnimatedCounterProps) => {
   }, [value, duration, displayValue]);
 
   return (
-    <span className="font-bold text-2xl tabular-nums transition-all duration-300">
+    <span className="font-bold text-2xl tabular-nums transition-all duration-300 inline-block">
       {displayValue.toLocaleString()}
     </span>
   );
