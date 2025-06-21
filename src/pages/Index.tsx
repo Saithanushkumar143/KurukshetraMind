@@ -8,6 +8,7 @@ import ExamplesSection from "@/components/ExamplesSection";
 import TrustSection from "@/components/TrustSection";
 import Footer from "@/components/Footer";
 import VisitorCounter from "@/components/VisitorCounter";
+import FeedbackSection from "@/components/FeedbackSection";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,6 +24,7 @@ const Index = () => {
       <CharactersSection />
       <ExamplesSection />
       <TrustSection />
+      <FeedbackSection />
       <Footer />
       <VisitorCounter />
     </div>
