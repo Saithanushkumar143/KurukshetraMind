@@ -48,14 +48,14 @@ const VisitorCounter = () => {
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-2xl">📊</span>
             <h3 className="text-spiritual-gold font-semibold text-lg">
-              Global Visits
+              Total Visits
             </h3>
           </div>
           <div className="text-spiritual-beige mb-2">
             <AnimatedCounter value={totalUsers} />
           </div>
           <p className="text-spiritual-beige/60 text-sm">
-            Shared across all seekers
+            Every journey to this sacred space
           </p>
         </div>
 
@@ -80,12 +80,12 @@ const VisitorCounter = () => {
       {/* Bottom Description */}
       <div className="flex items-center justify-center gap-3 text-spiritual-beige/50 text-sm">
         <span>🕉️</span>
-        <span>Real-time global counter</span>
+        <span>Real-time from Google Analytics</span>
         <span>🙏</span>
       </div>
       
       <p className="text-spiritual-beige/40 text-xs mt-2">
-        Updates every second • Shared by all users
+        Updated every 30 seconds • Powered by divine data
       </p>
     </div>
   );

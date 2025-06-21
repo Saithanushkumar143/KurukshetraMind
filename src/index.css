@@ -1,47 +1,100 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --spiritual-gold: #D4AF37;
-  --spiritual-charcoal: #1C1C1C;
-  --spiritual-beige: #F5F5DC;
-  --spiritual-brown: #8B4513;
-  --spiritual-crimson: #DC143C;
+/* KurukshetraMind spiritual design system */
+
+@layer base {
+  :root {
+    --background: 37 26 18;
+    --foreground: 43 36 25;
+
+    --card: 48 39 28;
+    --card-foreground: 245 240 232;
+
+    --popover: 48 39 28;
+    --popover-foreground: 245 240 232;
+
+    --primary: 43 67 87;
+    --primary-foreground: 245 240 232;
+
+    --secondary: 48 39 28;
+    --secondary-foreground: 245 240 232;
+
+    --muted: 37 26 18;
+    --muted-foreground: 156 142 120;
+
+    --accent: 212 175 55;
+    --accent-foreground: 26 26 26;
+
+    --destructive: 204 65 37;
+    --destructive-foreground: 245 240 232;
+
+    --border: 67 54 38;
+    --input: 67 54 38;
+    --ring: 212 175 55;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 37 26 18;
+    --sidebar-foreground: 245 240 232;
+    --sidebar-primary: 212 175 55;
+    --sidebar-primary-foreground: 26 26 26;
+    --sidebar-accent: 48 39 28;
+    --sidebar-accent-foreground: 245 240 232;
+    --sidebar-border: 67 54 38;
+    --sidebar-ring: 212 175 55;
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    @apply bg-gradient-to-br from-spiritual-warm-black via-spiritual-charcoal to-saffron-900 text-spiritual-beige font-body;
+    background-attachment: fixed;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-@layer utilities {
-  .hover-glow {
-    transition: all 0.3s ease;
+@layer components {
+  .spiritual-gradient {
+    @apply bg-gradient-to-r from-spiritual-gold via-saffron-500 to-spiritual-deep-orange;
   }
   
-  .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-    transform: translateY(-2px);
+  .text-gradient {
+    @apply bg-gradient-to-r from-spiritual-gold via-saffron-400 to-spiritual-gold bg-clip-text text-transparent;
   }
+  
+  .sacred-border {
+    @apply border-2 border-spiritual-gold/30 rounded-lg;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-spiritual-gold/20;
+  }
+}
 
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .animate-scroll-left {
-    animation: scroll-left 30s linear infinite;
-  }
+::-webkit-scrollbar-track {
+  background: theme('colors.spiritual.charcoal');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.spiritual.gold');
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.saffron.400');
 }
