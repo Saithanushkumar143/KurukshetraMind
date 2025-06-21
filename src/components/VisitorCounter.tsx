@@ -1,19 +1,19 @@
 
-import { useRealTimeAnalytics } from "@/hooks/useRealTimeAnalytics";
+import { useSharedVisitorCount } from "@/hooks/useSharedVisitorCount";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useEffect } from "react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const VisitorCounter = () => {
-  const { totalUsers, activeUsers, isLoading, error } = useRealTimeAnalytics();
+  const { totalVisits, activeUsers, isLoading, error } = useSharedVisitorCount();
   const { trackUserEngagement } = useAnalytics();
 
   useEffect(() => {
     // Track when visitor counter is viewed
     if (!isLoading) {
-      trackUserEngagement('visitor_counter_viewed', `total:${totalUsers},active:${activeUsers}`);
+      trackUserEngagement('shared_visitor_counter_viewed', `total:${totalVisits},active:${activeUsers}`);
     }
-  }, [totalUsers, activeUsers, isLoading, trackUserEngagement]);
+  }, [totalVisits, activeUsers, isLoading, trackUserEngagement]);
 
   if (isLoading) {
     return (
@@ -46,16 +46,16 @@ const VisitorCounter = () => {
         {/* Total Visits Column */}
         <div className="bg-spiritual-charcoal/50 rounded-lg p-6 border border-spiritual-gold/20 hover-glow">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-2xl">📊</span>
+            <span className="text-2xl">🌍</span>
             <h3 className="text-spiritual-gold font-semibold text-lg">
               Total Visits
             </h3>
           </div>
           <div className="text-spiritual-beige mb-2">
-            <AnimatedCounter value={totalUsers} />
+            <AnimatedCounter value={totalVisits} />
           </div>
           <p className="text-spiritual-beige/60 text-sm">
-            Every journey to this sacred space
+            Shared journey to wisdom
           </p>
         </div>
 
@@ -80,12 +80,12 @@ const VisitorCounter = () => {
       {/* Bottom Description */}
       <div className="flex items-center justify-center gap-3 text-spiritual-beige/50 text-sm">
         <span>🕉️</span>
-        <span>Real-time from Google Analytics</span>
+        <span>Updates every second • Shared across all users</span>
         <span>🙏</span>
       </div>
       
       <p className="text-spiritual-beige/40 text-xs mt-2">
-        Updated every 30 seconds • Powered by divine data
+        Real-time global counter • Powered by divine synchronization
       </p>
     </div>
   );
