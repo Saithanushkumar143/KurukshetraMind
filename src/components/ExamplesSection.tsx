@@ -1,11 +1,8 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useAnalytics } from "@/hooks/useAnalytics";
 
 const ExamplesSection = () => {
-  const { trackButtonClick, trackExternalLink, trackUserEngagement } = useAnalytics();
-
   const examples = [
     {
       struggle: "I feel betrayed",
@@ -41,19 +38,6 @@ const ExamplesSection = () => {
     }
   ];
 
-  const handleExploreTeaching = (teachingType: string) => {
-    trackButtonClick('explore_teaching', 'examples_section');
-    trackUserEngagement('teaching_exploration', teachingType);
-    trackExternalLink('https://project-mahabharat.onrender.com/explore', `Explore ${teachingType} Teaching`);
-    window.open('https://project-mahabharat.onrender.com/explore', '_blank');
-  };
-
-  const handleBeginJourney = () => {
-    trackButtonClick('begin_journey', 'examples_section');
-    trackExternalLink('https://project-mahabharat.onrender.com/explore', 'Begin Your Journey');
-    window.open('https://project-mahabharat.onrender.com/explore', '_blank');
-  };
-
   return (
     <section className="py-20 px-6 relative">
       <div className="max-w-6xl mx-auto">
@@ -68,6 +52,7 @@ const ExamplesSection = () => {
           </p>
         </div>
 
+        {/* Examples Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {examples.map((example, index) => (
             <Card 
@@ -83,12 +68,14 @@ const ExamplesSection = () => {
                 </div>
               </div>
 
+              {/* Arrow */}
               <div className="flex justify-center mb-4">
                 <div className={`w-8 h-0.5 bg-gradient-to-r ${example.color} relative`}>
                   <div className={`absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-spiritual-gold border-t-2 border-b-2 border-t-transparent border-b-transparent`}></div>
                 </div>
               </div>
 
+              {/* Teacher Response */}
               <div className="mb-4">
                 <div className={`inline-block px-3 py-1 bg-gradient-to-r ${example.color} text-spiritual-warm-black text-sm font-semibold rounded-full mb-3`}>
                   {example.teacher}
@@ -98,16 +85,18 @@ const ExamplesSection = () => {
                 </blockquote>
               </div>
 
+              {/* Context */}
               <p className="text-spiritual-beige/60 text-sm">
                 {example.context}
               </p>
 
+              {/* Hover Effect */}
               <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="border-spiritual-gold/50 text-spiritual-gold hover:bg-spiritual-gold hover:text-spiritual-warm-black text-xs"
-                  onClick={() => handleExploreTeaching(example.teacher)}
+                  onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
                 >
                   Explore This Teaching
                 </Button>
@@ -146,7 +135,7 @@ const ExamplesSection = () => {
             <Button 
               size="lg" 
               className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-3 hover:scale-105 transition-transform duration-300"
-              onClick={handleBeginJourney}
+              onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
             >
               🕉️ Begin Your Journey
             </Button>

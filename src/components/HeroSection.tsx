@@ -1,42 +1,15 @@
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { useAnalytics } from "@/hooks/useAnalytics";
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
-  const { trackButtonClick, trackExternalLink, trackUserEngagement } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
-    
-    // Track when user scrolls past hero section
-    const handleScrollEngagement = () => {
-      if (window.scrollY > window.innerHeight * 0.8) {
-        trackUserEngagement('scroll_past_hero');
-        window.removeEventListener("scroll", handleScrollEngagement);
-      }
-    };
-    window.addEventListener("scroll", handleScrollEngagement);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", handleScrollEngagement);
-    };
-  }, [trackUserEngagement]);
-
-  const handleStartJourney = () => {
-    trackButtonClick('start_journey', 'hero_section');
-    trackExternalLink('https://project-mahabharat.onrender.com/explore', 'Start Your Journey');
-    window.open('https://project-mahabharat.onrender.com/explore', '_blank');
-  };
-
-  const handleExploreWisdom = () => {
-    trackButtonClick('explore_wisdom', 'hero_section');
-    trackExternalLink('https://project-mahabharat.onrender.com/explore', 'Explore Wisdom');
-    window.open('https://project-mahabharat.onrender.com/explore', '_blank');
-  };
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -51,8 +24,10 @@ const HeroSection = () => {
         }}
       />
       
+      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-spiritual-warm-black/80 via-spiritual-charcoal/60 to-spiritual-warm-black/90" />
       
+      {/* Floating Elements - reduced animation */}
       <div className="absolute top-20 left-10 w-2 h-2 bg-spiritual-gold rounded-full opacity-70" />
       <div className="absolute top-40 right-20 w-1 h-1 bg-saffron-400 rounded-full opacity-60" />
       <div className="absolute bottom-40 left-20 w-3 h-3 bg-spiritual-gold/50 rounded-full opacity-50" />
@@ -69,11 +44,13 @@ const HeroSection = () => {
           </span>
         </h1>
         
+        {/* Subtitle */}
         <p className="font-body text-lg md:text-xl lg:text-2xl text-spiritual-beige/80 mb-8 max-w-2xl mx-auto leading-relaxed">
           Find guidance for your inner battles through the timeless wisdom of the Mahabharata. 
           Transform emotional struggles into spiritual growth.
         </p>
         
+        {/* Sanskrit Quote */}
         <div className="mb-10 p-6 border border-spiritual-gold/30 rounded-lg bg-spiritual-charcoal/30 backdrop-blur-sm">
           <p className="font-devanagari text-spiritual-gold text-lg mb-2">
             यदा यदा हि धर्मस्य ग्लानिर्भवति भारत
@@ -83,11 +60,12 @@ const HeroSection = () => {
           </p>
         </div>
         
+        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             size="lg" 
             className="spiritual-gradient text-spiritual-warm-black font-semibold px-8 py-4 text-lg hover:scale-105 transition-transform duration-300"
-            onClick={handleStartJourney}
+            onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
           >
             🕉️ Start Your Journey
           </Button>
@@ -95,7 +73,7 @@ const HeroSection = () => {
             variant="outline" 
             size="lg" 
             className="border-spiritual-gold text-spiritual-gold hover:bg-spiritual-gold hover:text-spiritual-warm-black px-8 py-4 text-lg transition-all duration-300"
-            onClick={handleExploreWisdom}
+            onClick={() => window.open('https://project-mahabharat.onrender.com/explore', '_blank')}
           >
             📖 Explore Wisdom
           </Button>
@@ -118,6 +96,7 @@ const HeroSection = () => {
         </div>
       </div>
       
+      {/* Scroll Indicator - reduced animation */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="w-6 h-10 border-2 border-spiritual-gold rounded-full flex justify-center">
           <div className="w-1 h-3 bg-spiritual-gold rounded-full mt-2 opacity-80"></div>
