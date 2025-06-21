@@ -79,10 +79,6 @@
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-spiritual-gold/20;
   }
-
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
-  }
 }
 
 /* Custom scrollbar */
@@ -101,14 +97,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.saffron.400');
-}
-
-/* Feedback scrolling animation */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }
